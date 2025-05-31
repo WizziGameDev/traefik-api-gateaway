@@ -29,7 +29,7 @@ services:
     command:
       - --api.insecure=true
       - --entryPoints.web.address=:80
-      - --providers.docker=true
+      - --providers.docker=false
       - --providers.docker.swarmMode=false
       - --providers.consulcatalog.endpoint.address=consul:8500
       - --providers.consulcatalog.refreshInterval=15s
