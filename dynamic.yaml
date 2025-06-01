@@ -1,0 +1,36 @@
+http:
+  routers:
+    member-graphql:
+      rule: "PathPrefix(`/api/v1/members/graphql`)"
+      service: service-member
+      entryPoints:
+        - web
+
+    member-graphiql:
+      rule: "PathPrefix(`/api/v1/members/graphiql`)"
+      service: service-member
+      entryPoints:
+        - web
+
+    product-graphql:
+      rule: "PathPrefix(`/api/v1/products/graphql`)"
+      service: service-product
+      entryPoints:
+        - web
+
+    product-graphiql:
+      rule: "PathPrefix(`/api/v1/products/graphiql`)"
+      service: service-product
+      entryPoints:
+        - web
+
+  services:
+    service-member:
+      loadBalancer:
+        servers:
+          - url: "http://service-member:9001"
+
+    service-product:
+      loadBalancer:
+        servers:
+          - url: "http://service-product:9001"
