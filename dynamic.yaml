@@ -12,6 +12,18 @@ http:
       entryPoints:
         - web
 
+    mitra-graphql:
+      rule: "PathPrefix(`/api/v1/mitras/graphql`)"
+      service: service-mitra
+      entryPoints:
+        - web
+
+    mitra-graphiql:
+      rule: "PathPrefix(`/api/v1/mitras/graphiql`)"
+      service: service-mitra
+      entryPoints:
+        - web
+
     product-graphql:
       rule: "PathPrefix(`/api/v1/products/graphql`)"
       service: service-product
@@ -24,13 +36,29 @@ http:
       entryPoints:
         - web
 
+    transaction-api-member:
+      rule: "PathPrefix(`/api`)"
+      service: service-transaction-member
+      entryPoints:
+        - web
+
   services:
     service-member:
       loadBalancer:
         servers:
           - url: "http://service-member:9001"
 
+    service-mitra:
+      loadBalancer:
+        servers:
+          - url: "http://service-mitra:9002"
+
     service-product:
       loadBalancer:
         servers:
           - url: "http://service-product:9003"
+
+    service-transaction-member:
+      loadBalancer:
+        servers:
+          - url: "http://nginx-transaction-member:80"
