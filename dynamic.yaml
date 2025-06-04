@@ -42,6 +42,18 @@ http:
       entryPoints:
         - web
 
+    transaction-api-mitra:
+      rule: "PathPrefix(`/api`)"
+      service: service-transaction-mitra
+      entryPoints:
+        - web
+
+    notification:
+      rule: "PathPrefix(`/api`)"
+      service: service-notification
+      entryPoints:
+        - web
+
   services:
     service-member:
       loadBalancer:
@@ -62,3 +74,13 @@ http:
       loadBalancer:
         servers:
           - url: "http://nginx-transaction-member:80"
+
+    service-transaction-mitra:
+      loadBalancer:
+        servers:
+          - url: "http://nginx-transaction-mitra:80"
+
+    service-notification:
+      loadBalancer:
+        servers:
+          - url: "http://nginx-notification:80"
