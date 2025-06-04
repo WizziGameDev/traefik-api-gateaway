@@ -48,12 +48,11 @@ http:
       entryPoints:
         - web
 
-    routers:
-      notification-api:
-        rule: "PathPrefix(`/api/notifications`)"
-        service: service-notification
-        entryPoints:
-          - web
+    notification-api:
+      rule: "PathPrefix(`/api/notifications`)"
+      service: service-notification
+      entryPoints:
+        - web
 
   services:
     service-member:
