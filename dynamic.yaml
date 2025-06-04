@@ -37,22 +37,23 @@ http:
         - web
 
     transaction-api-member:
-      rule: "PathPrefix(`/api`)"
+      rule: "PathPrefix(`/api/transactions-member`)"
       service: service-transaction-member
       entryPoints:
         - web
 
     transaction-api-mitra:
-      rule: "PathPrefix(`/api`)"
+      rule: "PathPrefix(`/api/transactions-mitra`)"
       service: service-transaction-mitra
       entryPoints:
         - web
 
-    notification:
-      rule: "PathPrefix(`/api`)"
-      service: service-notification
-      entryPoints:
-        - web
+    routers:
+      notification-api:
+        rule: "PathPrefix(`/api/notifications`)"
+        service: service-notification
+        entryPoints:
+          - web
 
   services:
     service-member:
